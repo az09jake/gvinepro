@@ -1,0 +1,529 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 196 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 196 100% 50%;
+    --radius: 0.5rem;
+    --point: 196 100% 50%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 196 100% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 196 100% 50%;
+    --point: 196 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    letter-spacing: -0.01em;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-light tracking-tight;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  h3 {
+    @apply text-xl md:text-2xl;
+    line-height: 1.4;
+  }
+  p {
+    @apply text-muted-foreground;
+    line-height: 1.6;
+  }
+  .font-bold,
+  strong {
+    @apply font-medium;
+  }
+
+  /* 링크 스타일 추가 */
+  a {
+    color: var(--color-point);
+    transition: opacity 0.2s;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    font-synthesis: none !important;
+    text-rendering: optimizelegibility;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+
+  /* 커서 스타일 */
+  .cursor-none {
+    cursor: none;
+  }
+
+  .cursor-none a,
+  .cursor-none button,
+  .cursor-none [role="button"],
+  .cursor-none input,
+  .cursor-none label,
+  .cursor-none select,
+  .cursor-none textarea,
+  .cursor-none .interactive {
+    cursor: none;
+  }
+
+  @media (max-width: 768px) {
+    .cursor-none,
+    .cursor-none a,
+    .cursor-none button,
+    .cursor-none [role="button"],
+    .cursor-none input,
+    .cursor-none label,
+    .cursor-none select,
+    .cursor-none textarea,
+    .cursor-none .interactive {
+      cursor: auto;
+    }
+  }
+
+  /* 특정 요소에서는 기본 커서 표시 */
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [contenteditable="true"] {
+    cursor: auto !important;
+  }
+}
+
+/* 한글 특화 텍스트 클래스 추가 */
+.text-kr-hero {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  font-weight: 300;
+}
+
+.text-kr-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+}
+
+.text-kr-body {
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.7;
+}
+
+.floating-testimonial {
+  animation: float 8s ease-in-out infinite;
+  position: absolute;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-card {
+  transition: all 0.4s ease;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.noise-bg {
+  position: relative;
+}
+
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.btn {
+  @apply rounded-full py-3 px-6 font-normal transition-all duration-300;
+}
+
+.btn-primary {
+  @apply bg-point text-white hover:bg-point/90;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+.btn-outline {
+  @apply border border-border bg-transparent text-foreground hover:bg-secondary/50;
+}
+
+.section-title {
+  @apply text-4xl md:text-5xl font-light mb-6;
+}
+
+.section-subtitle {
+  @apply text-xl text-muted-foreground max-w-3xl mx-auto mb-12;
+}
+
+.card-highlight {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+}
+
+/* 마우스 따라다니는 효과 관련 스타일 */
+.cursor-follower {
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.cursor-dot {
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+/* 링크 위에 있을 때 커서 효과 */
+.cursor-follower-link {
+  mix-blend-mode: normal !important;
+  border: 2px solid var(--color-point);
+  background: transparent !important;
+  animation: pulse-gradient 2s infinite;
+  box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+}
+
+.cursor-dot-link {
+  background-color: var(--color-point) !important;
+  mix-blend-mode: normal !important;
+  animation: pulse-size 2s infinite;
+}
+
+@keyframes pulse-gradient {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 162, 255, 0.5);
+    border-color: rgba(0, 162, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 162, 255, 0.8);
+    border-color: rgba(0, 162, 255, 1);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(0, 162, 255, 0.5);
+    border-color: rgba(0, 162, 255, 0.7);
+  }
+}
+
+@keyframes pulse-size {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+/* 마우스 오버 시 커서 효과를 위한 클래스 */
+.interactive {
+  cursor: none;
+}
+
+/* 비디오 배경 관련 스타일 */
+@media (max-width: 768px) {
+  video {
+    object-position: center;
+  }
+}
+
+/* 슬라이더 애니메이션 관련 스타일 */
+.slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  animation: scroll 40s linear infinite;
+  width: calc(250px * 14); /* 아이템 너비 * 아이템 개수 * 2 (복제) */
+}
+
+.slider-item {
+  flex: 0 0 calc(10% - 20px); /* 기존 25%에서 10%로 변경 - 더 많은 카드가 보이도록 */
+  min-width: calc(10% - 20px);
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .slider-item {
+    flex: 0 0 calc(15% - 20px); /* 태블릿에서도 더 많은 카드 표시 */
+    min-width: calc(15% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-item {
+    flex: 0 0 calc(20% - 20px); /* 모바일에서는 약간 더 넓게 */
+    min-width: calc(20% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-item {
+    flex: 0 0 calc(40% - 20px); /* 작은 모바일에서는 2개 정도 보이도록 */
+    min-width: calc(40% - 20px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7)); /* 아이템 너비 * 아이템 개수 */
+  }
+}
+
+/* 푸터 링크 스타일 */
+footer a {
+  color: var(--color-point);
+  transition: opacity 0.2s;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none !important;
+  text-rendering: optimizelegibility;
+}
+
+footer a:hover {
+  opacity: 0.8;
+}
+
+/* 헤더 링크 스타일 - 헤더는 다른 스타일을 유지 */
+header a {
+  color: inherit;
+  transition: var(--transition-link);
+}
+
+/* 로고 애니메이션 스타일 */
+.logo-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-svg {
+  overflow: visible;
+}
+
+.logo-text {
+  font-family: var(--font-pretendard);
+  font-weight: 400;
+}
+
+.water-wave-animation {
+  animation: waveAnimation 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes waveAnimation {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5px, 0);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  75% {
+    transform: translate(5px, 0);
+  }
+}
+
+/* 물결 애니메이션 효과 */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 850ms linear;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.perspective-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.perspective-card:hover {
+  transform: rotateY(5deg) rotateX(5deg);
+}
+
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+.from-point\/10 {
+  --tw-gradient-from: rgb(0 162 255 / 0.1);
+  --tw-gradient-to: rgb(0 162 255 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-point\/20 {
+  --tw-gradient-from: rgb(0 162 255 / 0.2);
+  --tw-gradient-to: rgb(0 162 255 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.blur-3xl {
+  --tw-blur: blur(64px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate)
+    var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+/* 반응형 디자인 개선 */
+@media (max-width: 768px) {
+  .md\:grid-cols-\[220px_1fr\] {
+    grid-template-columns: 1fr; /* 모바일에서는 1개의 컬럼만 사용 */
+  }
+
+  .lg\:grid-cols-\[280px_1fr\] {
+    grid-template-columns: 1fr; /* 모바일에서는 1개의 컬럼만 사용 */
+  }
+
+  .md\:ml-\[220px\] {
+    margin-left: 0; /* 모바일에서는 왼쪽 마진 제거 */
+  }
+
+  .lg\:ml-\[280px\] {
+    margin-left: 0; /* 모바일에서는 왼쪽 마진 제거 */
+  }
+
+  .md\:col-span-1 {
+    grid-column: auto !important; /* 모바일에서는 col-span 재정의 */
+  }
+
+  .md\:col-span-2 {
+    grid-column: auto !important; /* 모바일에서는 col-span 재정의 */
+  }
+
+  .lg\:col-span-3 {
+    grid-column: auto !important; /* 모바일에서는 col-span 재정의 */
+  }
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* 작은 화면에서 2개 컬럼을 1개로 변경 */
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* 작은 화면에서 3개 컬럼을 1개로 변경 */
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* 작은 화면에서 4개 컬럼을 1개로 변경 */
+  }
+}
+
